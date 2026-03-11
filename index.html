@@ -6,22 +6,14 @@
     <title>Recomendações do Jirou | Ofertas</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* ESTILOS GERAIS */
         body { font-family: 'Poppins', sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; color: #1c1e21; display: flex; flex-direction: column; min-height: 100vh; }
         header { background: #ffffff; padding: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 26px; font-weight: 800; color: #004085; }
         .logo span { color: #2ecc71; }
-
         .container { max-width: 1200px; margin: 40px auto; padding: 0 15px; flex: 1; }
-
-        /* TÍTULO EM DESTAQUE */
         .titulo-secao { font-size: 36px; font-weight: 800; text-align: center; color: #1c1e21; margin-bottom: 50px; position: relative; }
         .titulo-secao::after { content: ""; display: block; width: 70px; height: 6px; background: #2ecc71; margin: 15px auto; border-radius: 10px; }
-
-        /* GRADE DE PRODUTOS */
         .grid-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
-        
-        /* CARDS */
         .card { background: #ffffff; border-radius: 22px; overflow: hidden; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.06); display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.12); }
         .card-img { width: 100%; height: 260px; object-fit: contain; padding: 15px; background: #fff; box-sizing: border-box; }
@@ -30,27 +22,25 @@
         .preco-antigo { font-size: 14px; color: #8d949e; text-decoration: line-through; }
         .preco-atual { color: #1c1e21; font-size: 26px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 5px; }
         .tag-off { color: #2ecc71; font-size: 14px; font-weight: 800; }
-
-        /* RODAPÉ */
         footer { background: #ffffff; padding: 40px 20px; text-align: center; border-top: 1px solid #e4e6eb; margin-top: auto; }
         .footer-copy { font-size: 14px; color: #65676b; margin-bottom: 8px; font-weight: 600; }
         .footer-email { font-size: 14px; color: #0064e0; text-decoration: none; font-weight: 600; }
-
-        /* DETALHES E MODAL */
-        #detalhes-page { display: none; background: #f0f2f5; min-height: 100vh; padding: 20px; position: fixed; top: 0; left: 0; width: 100%; box-sizing: border-box; z-index: 1100; overflow-y: auto; }
-        .det-card { background: #ffffff; max-width: 650px; margin: 0 auto; border-radius: 30px; padding: 35px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        #detalhes-page { display: none; background: #f0f2f5; min-height: 100vh; padding: 20px 10px; width: 100%; box-sizing: border-box; position: relative; }
+        .det-card { background: #ffffff; max-width: 650px; margin: 0 auto 40px auto; border-radius: 30px; padding: 35px 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
         .back-btn { background: #e4e6eb; border: none; padding: 12px 25px; border-radius: 12px; cursor: pointer; font-weight: 600; margin-bottom: 25px; font-size: 15px; }
         .det-img-grande { width: 100%; max-height: 450px; object-fit: contain; margin-bottom: 30px; display: block; margin: 0 auto; }
         .btn-comprar { display: block; background: #fff159; color: #1c1e21; text-align: center; padding: 22px; border-radius: 18px; text-decoration: none; font-weight: 800; margin-top: 30px; box-shadow: 0 5px 0 #d9cb00; font-size: 20px; }
-        
         .modal { display: none; position: fixed; z-index: 1200; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); }
-        .modal-content { background: #fff; margin: 5% auto; padding: 30px; border-radius: 25px; width: 90%; max-width: 600px; max-height: 80vh; overflow-y: auto; position: relative; }
-        .close-modal { position: sticky; top: 0; float: right; font-size: 32px; cursor: pointer; font-weight: 900; color: #333; }
+        .modal-content { background: #fff; margin: 10% auto; padding: 30px; border-radius: 25px; width: 85%; max-width: 600px; max-height: 70vh; overflow-y: auto; position: relative; box-sizing: border-box; }
+        .close-modal { position: sticky; top: 0; float: right; font-size: 32px; cursor: pointer; font-weight: 900; color: #333; background: #fff; padding: 0 10px; border-radius: 50%; }
+        
+        /* AQUI ESTÁ O SEGREDO PARA COPIAR E COLAR DIRETO */
         #desc-full { line-height: 1.7; white-space: pre-line; color: #333; font-size: 16px; margin-top: 20px; }
 
         @media (max-width: 600px) {
             .titulo-secao { font-size: 28px; }
             .grid-produtos { grid-template-columns: 1fr; }
+            .modal-content { margin: 20% auto; width: 90%; }
         }
     </style>
 </head>
@@ -91,28 +81,58 @@
 </div>
 
 <script>
-    /* LISTA DE PRODUTOS PADRONIZADA */
     const produtos = [
-        { id: 1, titulo: "Notebook Positivo Vision R15m Amd Ryzen 5-5625u", precoOriginal: "3.855", precoPromo: "2.339", img: "https://i.ibb.co/VYyKg3WY/Captura-de-tela-2026-03-11-142542.png", link: "https://meli.la/1gqUgod", desc: `Processador: AMD Ryzen 5 5625U.
-Versão do sistema operacional: Debian.
-Nome do sistema operacional: Linux.
+        { 
+            id: 1, 
+            titulo: "Notebook Positivo Vision R15m Amd Ryzen 5-5625u", 
+            precoOriginal: "3.855", 
+            precoPromo: "2.339", 
+            img: "https://i.ibb.co/VYyKg3WY/Captura-de-tela-2026-03-11-142542.png", 
+            link: "https://meli.la/1gqUgod", 
+            desc: `Processador: AMD Ryzen 5 5625U.
 Capacidade de disco SSD: 256 GB.
-Capacidade total do módulo de memória RAM: 64 GB.
-Com tela tátil: Não.
-Resolução da tela: 1920 px x 1080 px.
-Conexão Wi-Fi e bluetooth.
-Inclui leitor de cartão de memória.
-Possui pad numérico.
-Modo de som Estéreo.` },
-        { id: 2, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
-        { id: 3, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
-        { id: 4, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
-        { id: 5, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
-        { id: 6, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
-        { id: 7, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
-        { id: 8, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
-        { id: 9, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
-        { id: 10, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` }
+RAM: 64 GB.
+Tela: 15" FullHD.` 
+        },
+        { id: 2, titulo: "Processador AMD Ryzen 7 5700X", precoOriginal: "2.256", precoPromo: "1.229", img: "https://i.ibb.co/2YmvYYhx/Captura-de-tela-2026-03-11-144212.png", link: "https://meli.la/16ofrkv", desc: `Modelo: 5700X.
+Cache: 32 MB.
+Soquete: AM4.` },
+        { id: 3, titulo: "PC Gamer Completo AMD Ryzen 5 5600GT", precoOriginal: "4.410", precoPromo: "3.249", img: "https://i.ibb.co/fGM6hB1m/Captura-de-tela-2026-03-11-144651.png", link: "https://meli.la/2uBxf1D", desc: `SSD: 480 GB.
+RAM: 16 GB.
+Monitor: 20" LED.` },
+        { id: 4, titulo: "Teclado Mecanico Gamer Pcyes Kuromori 60%", precoOriginal: "219", precoPromo: "150", img: "https://i.ibb.co/zHCns9Vr/Captura-de-tela-2026-03-11-145006.png", link: "https://meli.la/1PhX7w4", desc: `Switch: Outemu Blue.
+Layout: ABNT2.` },
+        { id: 5, titulo: "Notebook Multi Ultra Celeron N4020c", precoOriginal: "2.064", precoPromo: "1.281", img: "https://i.ibb.co/Z69hq54t/Captura-de-tela-2026-03-11-145448.png", link: "https://meli.la/1ba8Nvv", desc: `SSD: 128 GB.
+RAM: 4 GB.` },
+        { id: 6, titulo: "Parafusadeira Furadeira De Impacto 21v", precoOriginal: "383", precoPromo: "199", img: "https://http2.mlstatic.com/D_NQ_NP_2X_957677-MLA99930615627_112025-F.webp", link: "https://meli.la/2c5atDK", desc: `Bivolt.
+Rotação 1400rpm.` },
+        { id: 7, titulo: "Celular Samsung Galaxy A26 5g 256gb", precoOriginal: "2.165", precoPromo: "1.470", img: "https://http2.mlstatic.com/D_NQ_NP_2X_792472-MLA100025549859_122025-F.webp", link: "https://meli.la/16QV4qu", desc: `Memória: 256GB.
+RAM: 8 GB.` },
+        { id: 8, titulo: "Celular Samsung Galaxy A17 Com Ia", precoOriginal: "1.499", precoPromo: "899", img: "https://http2.mlstatic.com/D_NQ_NP_2X_807017-MLA91535682558_092025-F.webp", link: "https://meli.la/2nmaV7U", desc: `IA integrada.
+Bateria 5000 mAh.` },
+        { id: 9, titulo: "Monitor Gamer LG 24MS500-B 100hz", precoOriginal: "899", precoPromo: "500", img: "https://http2.mlstatic.com/D_NQ_NP_2X_921982-MLA99962503055_112025-F.webp", link: "https://meli.la/2ppDAGL", desc: `Taxa: 100Hz.
+FullHD.` },
+        { 
+            id: 10, 
+            titulo: "Celular Samsung Galaxy A56 5g 128gb", 
+            precoOriginal: "2.855", 
+            precoPromo: "1.844", 
+            img: "https://http2.mlstatic.com/D_NQ_NP_2X_638445-MLA100187155155_122025-F.webp", 
+            link: "https://meli.la/1rbJrd3", 
+            desc: `Memória RAM: 8 GB.
+Dispositivo desbloqueado para que você escolha a companhia telefônica de sua preferência.
+Compatível com redes 5G.
+Tela Super AMOLED de 6.7".
+Tem 3 câmeras traseiras de 50Mpx/12Mpx/5Mpx.
+Câmeras frontais de 12Mpx.
+Bateria de 5 Ah.
+Memória interna de 128GB.
+A prova d'água.
+Com reconhecimento facial e sensor de impressão digital.
+Resistente as quedas.
+Cartão eSIM incluído.
+ Equipado com o processador Exynos 1580 (4nm).` 
+        }
     ];
 
     function carregarVitrine() {
@@ -149,6 +169,7 @@ Modo de som Estéreo.` },
         document.getElementById('detalhes-page').style.display = 'none'; 
         document.getElementById('main-view').style.display = 'block';
         document.getElementById('footer-site').style.display = 'block';
+        window.scrollTo(0,0);
     }
     
     function abrirPopup() { document.getElementById('meuModal').style.display = 'block'; }
@@ -160,4 +181,3 @@ Modo de som Estéreo.` },
 </script>
 </body>
 </html>
-
