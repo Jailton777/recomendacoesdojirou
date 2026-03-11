@@ -6,48 +6,27 @@
     <title>Recomendações do Jirou | Ofertas</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* CONFIGURAÇÕES GERAIS */
+        /* ESTILOS GERAIS */
         body { font-family: 'Poppins', sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; color: #1c1e21; display: flex; flex-direction: column; min-height: 100vh; }
-        
         header { background: #ffffff; padding: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 26px; font-weight: 800; color: #004085; }
         .logo span { color: #2ecc71; }
 
         .container { max-width: 1200px; margin: 40px auto; padding: 0 15px; flex: 1; }
 
-        /* TÍTULO "OFERTAS DO DIA" EM DESTAQUE */
-        .titulo-secao {
-            font-size: 36px;
-            font-weight: 800;
-            text-align: center;
-            color: #1c1e21;
-            margin-bottom: 50px;
-            position: relative;
-        }
-        .titulo-secao::after {
-            content: "";
-            display: block;
-            width: 70px;
-            height: 6px;
-            background: #2ecc71;
-            margin: 15px auto;
-            border-radius: 10px;
-        }
+        /* TÍTULO EM DESTAQUE */
+        .titulo-secao { font-size: 36px; font-weight: 800; text-align: center; color: #1c1e21; margin-bottom: 50px; position: relative; }
+        .titulo-secao::after { content: ""; display: block; width: 70px; height: 6px; background: #2ecc71; margin: 15px auto; border-radius: 10px; }
 
-        /* VITRINE E CARDS AUMENTADOS */
+        /* GRADE DE PRODUTOS */
         .grid-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
         
+        /* CARDS */
         .card { background: #ffffff; border-radius: 22px; overflow: hidden; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.06); display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.12); }
-        
-        /* Thumbnails Maiores */
         .card-img { width: 100%; height: 260px; object-fit: contain; padding: 15px; background: #fff; box-sizing: border-box; }
-        
         .card-info { padding: 20px; border-top: 1px solid #f0f2f5; flex-grow: 1; text-align: center; }
-        
-        /* Título do Card Maior */
         .card-titulo { font-size: 17px; font-weight: 600; margin-bottom: 12px; color: #1c1e21; line-height: 1.4; height: 48px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-        
         .preco-antigo { font-size: 14px; color: #8d949e; text-decoration: line-through; }
         .preco-atual { color: #1c1e21; font-size: 26px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 5px; }
         .tag-off { color: #2ecc71; font-size: 14px; font-weight: 800; }
@@ -69,10 +48,9 @@
         .close-modal { position: sticky; top: 0; float: right; font-size: 32px; cursor: pointer; font-weight: 900; color: #333; }
         #desc-full { line-height: 1.7; white-space: pre-line; color: #333; font-size: 16px; margin-top: 20px; }
 
-        /* AJUSTE PARA CELULAR */
         @media (max-width: 600px) {
             .titulo-secao { font-size: 28px; }
-            .grid-produtos { grid-template-columns: 1fr; } /* Um produto por vez no celular fica melhor para ver a foto grande */
+            .grid-produtos { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -92,7 +70,7 @@
 
 <div id="detalhes-page">
     <div class="det-card">
-        <button class="back-btn" onclick="fecharDetalhes()">← Voltar para as ofertas</button>
+        <button class="back-btn" onclick="fecharDetalhes()">← Voltar</button>
         <img id="det-img" src="" class="det-img-grande">
         <h1 id="det-titulo" style="font-size: 24px; text-align: center; font-weight: 800; margin-top: 0;"></h1>
         <div style="text-align: center; margin: 25px 0;">
@@ -113,220 +91,18 @@
 </div>
 
 <script>
-    /* DICA: Para cada produto, use ` (crase) no campo desc para quebrar linhas.
-    */
+    /* LISTA DE PRODUTOS PADRONIZADA */
     const produtos = [
-        { 
-            id: 1, 
-            titulo: "Notebook Positivo Vision R15m Amd Ryzen 5-5625u Linux 8gb Ram 256gb Ssd Wi-fi 6 Tela 15 Full Hd Ips Antirreflexo", 
-            precoOriginal: "3.855", 
-            precoPromo: "2.339", 
-            img: "https://i.ibb.co/gbC6bdtQ/Screenshot-20260311-131254-Mercado-Libre.jpg", 
-            link: "https://meli.la/1gqUgod", 
-            desc: `O Positivo Vision R15M Ryzen 5 5625U é um notebook intermediário voltado para estudos, trabalho e uso diário. Aqui estão todas as informações principais dele:
-
-
----
-
-💻 Informações do Notebook Positivo Vision R15M
-
-🧠 Processador
-
-AMD Ryzen 5 5625U
-
-6 núcleos e 12 threads
-
-Frequência base: 2.3 GHz
-
-Turbo: até 4.3 GHz
-
-Cache: 16 MB
-
-Série Ryzen 5000 (bom desempenho para multitarefa) 
-
-
-🎮 Placa de vídeo
-
-AMD Radeon Graphics (integrada)
-
-Serve para:
-
-jogos leves
-
-edição simples
-
-programas de trabalho
-
-
-
-
----
-
-🧠 Memória RAM
-
-8 GB DDR4 3200 MHz
-
-Possui 2 slots
-
-Expansão até 64 GB 
-
-
-
----
-
-💾 Armazenamento
-
-SSD 256 GB NVMe
-
-Expansão até 4 TB 
-
-
-
----
-
-🖥️ Tela
-
-15,6 polegadas
-
-Full HD (1920×1080)
-
-Painel IPS
-
-Antirreflexo
-
-Taxa de atualização 60 Hz 
-
-
-➡️ Tela IPS tem cores melhores e ângulo de visão maior.
-
-
----
-
-📡 Conectividade
-
-Wi-Fi 6
-
-Bluetooth 5.2 
-
-
-
----
-
-🔌 Portas
-
-1x HDMI
-
-2x USB 3.2
-
-1x USB 2.0
-
-1x USB-C
-
-1x entrada fone/microfone
-
-Leitor de cartão SD 
-
-
-
----
-
-📷 Câmera
-
-Webcam HD 720p
-
-Tecnologia Lumina Bar (iluminação para videochamadas) 
-
-
-
----
-
-🔋 Bateria
-
-55 Wh
-
-Duração média de até 8 horas dependendo do uso 
-
-
-
----
-
-⚖️ Peso e tamanho
-
-Peso: 1,75 kg
-
-Espessura: 1,96 cm 
-
-
-
----
-
-🖥️ Sistema Operacional
-
-Linux Debian
-
-
-⚠️ Muitas pessoas instalam Windows depois.
-
-
----
-
-⭐ Diferenciais
-
-MiniTela IPS de 1,54" para notificações e widgets
-
-Wi-Fi 6 (internet mais rápida)
-
-Upgrade de RAM e SSD fácil
-
-
-
----
-
-✅ Resumo do desempenho:
-
-Excelente para estudar, trabalhar, internet, filmes e programação
-
-Roda alguns jogos leves como:
-
-Valorant
-
-CS2
-
-League of Legends
-
-Minecraft
-
-
-
-❌ Não é ideal para jogos pesados.
-
-
----
-
-💬 Se quiser, posso te falar também:
-
-Se ele roda jogos tipo GTA V, Fortnite ou Red Dead 2
-
-**Se vale a pena comprar ou tem notebook melhor na mesma faixa de preço.**\nO topo de linha com inteligência artificial.\n\n• Câmera de 200MP\n• Tela de 6.8 polegadas\n• Caneta S-Pen inclusa`
-        },
-        { 
-            id: 2, 
-            titulo: "Smartphone Samsung Galaxy A55 5G", 
-            precoOriginal: "2.499", 
-            precoPromo: "1.899", 
-            img: "LINK_DA_IMAGEM", 
-            link: "SEU_LINK_AQUI", 
-            desc: `O melhor equilíbrio entre preço e potência.\n• Acabamento premium em metal\n• Câmeras excelentes para redes sociais` 
-        },
-        /* Adicione os outros 8 itens seguindo o mesmo modelo acima */
-        { id: 3, titulo: "Produto 3", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK", link: "LINK", desc: `Descrição` },
-        { id: 4, titulo: "Produto 4", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK", link: "LINK", desc: `Descrição` },
-        { id: 5, titulo: "Produto 5", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK", link: "LINK", desc: `Descrição` },
-        { id: 6, titulo: "Produto 6", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK", link: "LINK", desc: `Descrição` },
-        { id: 7, titulo: "Produto 7", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK", link: "LINK", desc: `Descrição` },
-        { id: 8, titulo: "Produto 8", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK", link: "LINK", desc: `Descrição` },
-        { id: 9, titulo: "Produto 9", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK", link: "LINK", desc: `Descrição` },
-        { id: 10, titulo: "Produto 10", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK", link: "LINK", desc: `Descrição` }
+        { id: 1, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
+        { id: 2, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
+        { id: 3, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
+        { id: 4, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
+        { id: 5, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
+        { id: 6, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
+        { id: 7, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
+        { id: 8, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
+        { id: 9, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` },
+        { id: 10, titulo: "NOME DO PRODUTO", precoOriginal: "0.000", precoPromo: "0.000", img: "LINK DA IMAGEM", link: "LINK AFILIADO", desc: `DESCRIÇÃO` }
     ];
 
     function carregarVitrine() {
@@ -374,3 +150,4 @@ Se ele roda jogos tipo GTA V, Fortnite ou Red Dead 2
 </script>
 </body>
 </html>
+
